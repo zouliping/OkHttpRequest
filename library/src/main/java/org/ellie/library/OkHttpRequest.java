@@ -142,4 +142,7 @@ public class OkHttpRequest {
         }
     }
 
+    public static Request get(String url) {
+        return new GetRequest(url);
+    }
 }
