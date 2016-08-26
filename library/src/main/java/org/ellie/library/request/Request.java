@@ -1,5 +1,7 @@
 package org.ellie.library.request;
 
+import android.text.TextUtils;
+
 import org.ellie.library.OkHttpRequest;
 import org.ellie.library.callback.Callback;
 
@@ -31,8 +33,7 @@ public abstract class Request<T extends Request> {
 
     protected okhttp3.Request.Builder mBuilder;
 
-    public Request(String url) {
-        mUrl = url;
+    public Request() {
         if (OkHttpRequest.getInstance().getHeaders() != null) {
             mHeaders = OkHttpRequest.getInstance().getHeaders();
         }
@@ -139,6 +140,10 @@ public abstract class Request<T extends Request> {
      * 获取 request
      */
     protected okhttp3.Request getRequest(Callback callback) {
+        if (TextUtils.isEmpty(mUrl)) {
+            throw new IllegalStateException("url can not be empty");
+        }
+
         return buildRequest(getRequestBody(buildRequestBody(), callback));
     }
 

@@ -7,10 +7,6 @@ import okhttp3.RequestBody;
 
 public class GetRequest extends Request<GetRequest> {
 
-    public GetRequest(String url) {
-        super(url);
-    }
-
     @Override
     protected RequestBody buildRequestBody() {
         return null;
@@ -23,7 +19,7 @@ public class GetRequest extends Request<GetRequest> {
     }
 
     private String buildUrlParams() {
-        if (TextUtils.isEmpty(mUrl) || mParams == null || mParams.isEmpty()) {
+        if (mParams == null || mParams.isEmpty()) {
             return mUrl;
         }
 

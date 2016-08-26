@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put("sort", "stars");
                 params.put("order", "desc");
 
-                OkHttpRequest.get("https://api.github.com/search/users")
+                OkHttpRequest.get()
+                        .url("https://api.github.com/search/users")
                         .param("per_page", "2")
                         .param("q", "Jake")
                         .params(params)
