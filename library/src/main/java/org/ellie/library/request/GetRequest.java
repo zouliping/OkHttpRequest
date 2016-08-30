@@ -1,7 +1,5 @@
 package org.ellie.library.request;
 
-import android.text.TextUtils;
-
 import okhttp3.HttpUrl;
 import okhttp3.RequestBody;
 
