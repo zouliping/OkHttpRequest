@@ -17,14 +17,7 @@ import okhttp3.Response;
 
 public abstract class Request<T extends Request> {
 
-    public interface Method {
-        int GET = 0;
-        int POST = 1;
-        int PUT = 2;
-        int DELETE = 3;
-    }
-
-    private int mMethod, mId;
+    private int mId;
     private long mConnectTimeout, mReadTimeout, mWriteTimeout;
     private Object mTag;
 
