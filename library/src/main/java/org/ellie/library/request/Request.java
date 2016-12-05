@@ -132,25 +132,25 @@ public abstract class Request<T extends Request> {
     /**
      * 子类可对 request body 进行一层封装
      */
-    protected RequestBody getRequestBody(RequestBody requestBody, Callback callback) {
+    protected RequestBody getRequestBody(RequestBody requestBody) {
         return requestBody;
     }
 
     /**
      * 获取 request
      */
-    protected okhttp3.Request getRequest(Callback callback) {
+    protected okhttp3.Request getRequest() {
         if (TextUtils.isEmpty(mUrl)) {
             throw new IllegalStateException("url can not be empty");
         }
 
-        return buildRequest(getRequestBody(buildRequestBody(), callback));
+        return buildRequest(getRequestBody(buildRequestBody()));
     }
 
     /**
      * 创建 call
      */
-    public Call buildCall(Callback callback) {
+    public Call buildCall() {
         if (mConnectTimeout > 0 || mReadTimeout > 0 || mWriteTimeout > 0) {
 
             mConnectTimeout = mConnectTimeout > 0 ? mConnectTimeout : OkHttpRequest.DEFAULT_CONNECT_TIMEOUT;
@@ -162,9 +162,9 @@ public abstract class Request<T extends Request> {
                     .readTimeout(mReadTimeout, TimeUnit.MILLISECONDS)
                     .writeTimeout(mWriteTimeout, TimeUnit.MILLISECONDS)
                     .build()
-                    .newCall(getRequest(callback));
+                    .newCall(getRequest());
         } else {
-            return OkHttpRequest.getInstance().getOkHttpClient().newCall(getRequest(callback));
+            return OkHttpRequest.getInstance().getOkHttpClient().newCall(getRequest());
         }
     }
 
@@ -172,7 +172,7 @@ public abstract class Request<T extends Request> {
      * 同步的请求
      */
     public Response execute() throws IOException {
-        return buildCall(null).execute();
+        return buildCall().execute();
     }
 
     /**
@@ -183,7 +183,7 @@ public abstract class Request<T extends Request> {
         if (callback == null) {
             callback = Callback.DEFAULT_CALLBACK;
         }
-        Call call = buildCall(callback);
+        Call call = buildCall();
         final Callback finalCallback = callback;
 
         if (mId <= 0) {
