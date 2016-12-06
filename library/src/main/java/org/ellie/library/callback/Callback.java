@@ -25,21 +25,4 @@ public abstract class Callback<T> {
     public void onProgress(int id, float progress, long current, long total) {
     }
 
-    public static Callback DEFAULT_CALLBACK = new Callback() {
-        @Override
-        public Object parseNetworkResponse(int id, Response response) {
-            return response;
-        }
-
-        @Override
-        public void onResponse(int id, Object data) {
-
-        }
-
-        @Override
-        public void onError(int id, Exception e) {
-
-        }
-    };
-
 }
