@@ -46,36 +46,43 @@ public abstract class Request<T extends Request> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public T url(String url) {
         mUrl = url;
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T id(int id) {
         mId = id;
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T connectTimeout(long connectTimeout) {
         mConnectTimeout = connectTimeout;
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T readTimeout(long readTimeout) {
         mReadTimeout = readTimeout;
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T writeTimeout(long writeTimeout) {
         mWriteTimeout = writeTimeout;
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T tag(Object tag) {
         mTag = tag;
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T headers(Map<String, String> headers) {
         if (mHeaders == null) {
             mHeaders = new LinkedHashMap<>();
@@ -86,6 +93,7 @@ public abstract class Request<T extends Request> {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T header(String key, String value) {
         if (mHeaders == null) {
             mHeaders = new LinkedHashMap<>();
@@ -94,6 +102,7 @@ public abstract class Request<T extends Request> {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T params(Map<String, String> params) {
         if (mParams == null) {
             mParams = new LinkedHashMap<>();
@@ -104,6 +113,7 @@ public abstract class Request<T extends Request> {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     public T param(String key, String value) {
         if (mParams == null) {
             mParams = new LinkedHashMap<>();
