@@ -20,13 +20,13 @@ public abstract class Request<T extends Request> {
     private int mId;
     private long mConnectTimeout, mReadTimeout, mWriteTimeout;
     private Object mTag;
+    private Map<String, String> mHeaders;
+    Map<String, String> mParams;
 
-    protected String mUrl;
-    protected Map<String, String> mHeaders, mParams;
+    String mUrl;
+    okhttp3.Request.Builder mBuilder;
 
-    protected okhttp3.Request.Builder mBuilder;
-
-    public Request() {
+    Request() {
         if (OkHttpRequest.getInstance().getHeaders() != null) {
             mHeaders = OkHttpRequest.getInstance().getHeaders();
         }
@@ -37,7 +37,7 @@ public abstract class Request<T extends Request> {
         mBuilder = new okhttp3.Request.Builder();
     }
 
-    protected void initBuilder() {
+    void initBuilder() {
         mBuilder.tag(mTag);
         if (mHeaders != null && !mHeaders.isEmpty()) {
             for (String key : mHeaders.keySet()) {
@@ -125,14 +125,14 @@ public abstract class Request<T extends Request> {
     /**
      * 子类可对 request body 进行一层封装
      */
-    protected RequestBody getRequestBody(RequestBody requestBody) {
+    private RequestBody getRequestBody(RequestBody requestBody) {
         return requestBody;
     }
 
     /**
      * 获取 request
      */
-    protected okhttp3.Request getRequest() {
+    private okhttp3.Request getRequest() {
         if (TextUtils.isEmpty(mUrl)) {
             throw new IllegalStateException("url can not be empty");
         }
@@ -143,7 +143,7 @@ public abstract class Request<T extends Request> {
     /**
      * 创建 call
      */
-    public Call buildCall() {
+    private Call buildCall() {
         if (mConnectTimeout > 0 || mReadTimeout > 0 || mWriteTimeout > 0) {
 
             mConnectTimeout = mConnectTimeout > 0 ? mConnectTimeout : OkHttpRequest.DEFAULT_CONNECT_TIMEOUT;
