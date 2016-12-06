@@ -184,7 +184,7 @@ public abstract class Request<T extends Request> {
      */
     public void execute(Callback callback) {
         if (callback == null) {
-            callback = Callback.DEFAULT_CALLBACK;
+            throw new IllegalStateException("callback can not be null");
         }
         Call call = buildCall();
         final Callback finalCallback = callback;
