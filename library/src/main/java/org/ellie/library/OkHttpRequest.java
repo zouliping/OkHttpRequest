@@ -3,8 +3,10 @@ package org.ellie.library;
 import android.os.Handler;
 import android.os.Looper;
 
+import org.ellie.library.request.DeleteRequest;
 import org.ellie.library.request.GetRequest;
 import org.ellie.library.request.PostRequest;
+import org.ellie.library.request.PutRequest;
 import org.ellie.library.request.Request;
 
 import java.util.Map;
@@ -149,5 +151,13 @@ public class OkHttpRequest {
 
     public static PostRequest post() {
         return new PostRequest();
+    }
+
+    public static PutRequest put() {
+        return new PutRequest();
+    }
+
+    public static DeleteRequest delete() {
+        return new DeleteRequest();
     }
 }
